@@ -4,6 +4,12 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+            {
+               <b> Aranacak Müşteri Adı: </b>@Html.TextBox("p")
+                <input  type="submit" value="Ara"/>
+            }
+
 <table class="table table-bordered">
 
     <tr>
@@ -12,6 +18,7 @@
         <th>Müşteri Soyadı</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>ALERT</th>
 
     </tr>
     <tbody>
@@ -21,8 +28,9 @@
                 <th>@item.MUSTERIID</th>
                 <td>@item.MUSTERIAD</td>
                 <td>@item.MUSTERISOYAD</td>
-                <td><a href="/Customer/Delete/@item.MUSTERIID," class="btn btn-danger">Sil</a></td>
-                <td><a href="/Category/Create/@item.MUSTERIID" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Customer/Delete/@item.MUSTERIID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Customer/GetByIdCustomer/@item.MUSTERIID" class="btn btn-success">Güncelle</a></td>
+                <td>@Html.ActionLink("Sil", "Delete",new {id=item.MUSTERIID},new {@class= "btn btn-warning", onclick = "return confirm('Gerçekten Silme İstiyor Musunuz?')"})</td>
             </tr>
         }
     </tbody>

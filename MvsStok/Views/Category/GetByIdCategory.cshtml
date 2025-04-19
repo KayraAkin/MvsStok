@@ -1,0 +1,22 @@
+﻿@model MvsStok.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "GetByIdCategory";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post))
+ {
+    <div class="form-group">
+        @Html.LabelFor(x=>x.KATEGORIID)
+        @Html.TextBoxFor(x=> x.KATEGORIID, new {@class ="form-control"})
+
+        @Html.LabelFor(x=> x.KATEGGORIAD)
+        @Html.TextBoxFor(x => x.KATEGGORIAD, new {@class = "form-control"} )
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Kategori Güncelle</button>
+    </div>
+
+ }

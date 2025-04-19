@@ -1,4 +1,4 @@
-﻿
+﻿@model MvsStok.Models.Entity.TBLKATEGORILER
 @{
     ViewBag.Title = "CreateCategory";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -6,9 +6,14 @@
 
 <form class="form-group" method="post">
 
-    <div>
+    @*<div>
         <label>Kategori Adı</label>
         <input type="text" class="form-control" name="KATEGGORIAD"/>
+    </div>*@
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(x=>x.KATEGGORIAD,new {@class = "form-control"})
+        @Html.ValidationMessageFor(x=> x.KATEGGORIAD, "", new {@style="color:blue"})
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-info">Kategori Ekle</button>

@@ -1,20 +1,22 @@
-﻿@model List<MvsStok.Models.Entity.TBLURUNLAR> 
+﻿@model List<MvsStok.Models.Entity.TBLURUNLAR>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<table class="table table-bordered">
-    <tr>
-        <th>Ürün Id</th>
-        <th>Ürün Adı</th>
-        <th>Markası</th>
-        <th>Kategori</th>
-        <th>Fiyat</th>
-        <th>Stok</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-    </tr>
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ürün Id</th>
+            <th>Ürün Adı</th>
+            <th>Markası</th>
+            <th>Kategori</th>
+            <th>Fiyat</th>
+            <th>Stok</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
@@ -22,13 +24,19 @@
                 <th>@item.URUNID</th>
                 <td>@item.URUNAD</td>
                 <td>@item.MARKA</td>
-                <td>@item.URUNKATEGORI</td>
+                <td>@item.TBLKATEGORILER.KATEGGORIAD</td>
                 <td>@item.FIYAT</td>
                 <td>@item.STOK</td>
-                <td><a href="/Product/Delete/@item.URUNID," class="btn btn-danger">Sil</a></td>
-                <td><a href="/Product/Create/@item.URUNID" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Product/Delete/@item.URUNID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Product/GeyByIdProduct/@item.URUNID" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>
 </table>
 <a href="/Product/CreateProduct/" class="btn btn-primary">Yeni Ürün</a>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#tbl1').DataTable();
+</script>

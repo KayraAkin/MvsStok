@@ -1,4 +1,6 @@
-﻿@model List<MvsStok.Models.Entity.TBLKATEGORILER>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<MvsStok.Models.Entity.TBLKATEGORILER>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -18,10 +20,13 @@
             <tr>
                 <th>@item.KATEGORIID</th>
                 <td>@item.KATEGGORIAD</td>
-                <td><a href="/Category/Delete/@item.KATEGORIID," class="btn btn-danger">Sil</a></td>
-                <td><a href="/Category/Create/@item.KATEGORIID" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Category/Delete/@item.KATEGORIID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Category/GetByIdCategory/@item.KATEGORIID" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+
+
 <a href="/Category/CreateCategory/" class="btn btn-primary">Yeni Kategori</a>
